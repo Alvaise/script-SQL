@@ -1,6 +1,7 @@
 /*1) visualizzare la "ragione_sociale" delle aziende che hanno degli 
  * 
  * 
+ * 
  investimenti, con i "nomi" di tutti i propri investimenti*/
 select
 	fa.ragione_sociale,
