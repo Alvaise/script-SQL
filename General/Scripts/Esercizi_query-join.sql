@@ -159,7 +159,8 @@ from
 left join
 	ft_investimento as fi on
 		fa.id = fi.azienda 
-where fi.azienda is null;
+where 
+	fi.azienda is null;
 /*16) visualizzare i dettagli degli investimenti che non hanno ROI.*/
 select
 	fi.*
@@ -168,7 +169,8 @@ from
 left join
 	ft_roi as fr on
 		fi.id = fr.investimento 
-where fr.investimento is null;
+where 
+	fr.investimento is null;
 
 /*17) visualizzare i dettagli delle aziende che non hanno prodotti.*/
 select
@@ -178,7 +180,8 @@ from
 left join
 	ft_prodotto as fp on
 		fa.id = fp.azienda
-where fp.azienda is null;
+where 
+	fp.azienda is null;
 
 /*18) visualizzare i dettagli dei prodotti che non sono presenti in nessuna transazione.*/
 select 
@@ -189,7 +192,8 @@ from
 left join
 	ft_transazione as ft on
 		fp.id = ft.prodotto 
-where ft.prodotto is null;
+where 
+	ft.prodotto is null;
 	
 /*19) visualizzare i dettagli dei clienti che non hanno effettuato recensioni.*/
 select 
@@ -199,7 +203,8 @@ from
 left join
 	ft_recensione as fr on
 		fc.id = fr.cliente
-where fr.cliente is null;
+where 
+	fr.cliente is null;
 /*20)visualizzare i dettagli delle aziende che non hanno investimenti, scrivendo prima la tabella degli investimenti.*/
 select
 	fa.*,
@@ -209,7 +214,8 @@ from
 right join 
 	ft_azienda as fa on
 		fi.azienda =fa.id 
-where fi.id is null;
+where 
+	fi.id is null;
 	
 
 /*22) visualizzare i dettagli degli investimenti che non hanno ROI, scrivendo prima la tabella dei ROI.*/
@@ -220,7 +226,8 @@ from
 right join
 	ft_investimento as fi on
 		fr.investimento = fi.id 
-where fr.investimento  is null;
+where 
+	fr.investimento  is null;
 
 /*23) visualizzare i dettagli delle aziende che non hanno prodotti, scrivendo prima la tabella dei prodotti.*/
 select
@@ -231,7 +238,8 @@ from
 right join 
 	ft_azienda as fa on
 		fp.azienda =fa.id 
-where fp.azienda is null;
+where 
+	fp.azienda is null;
 	 
 
 /*24) visualizzare i dettagli dei prodotti che non sono presenti in nessuna transazione, scrivendo prima la tabella delle transazioni.*/
@@ -243,7 +251,8 @@ from
 right join
 	ft_prodotto as fp on
 		ft.prodotto  = fp.id
-where ft.prodotto is null;
+where 
+	ft.prodotto is null;
 	
 	
 /*25) visualizzare i dettagli dei clienti che non hanno effettuato recensioni, scrivendo prima la tabella delle recensioni.*/
@@ -255,7 +264,8 @@ from
 right join 
 	ft_cliente as fc on
 		fr.cliente = fc.id 
-where fr.cliente is null;
+where 
+	fr.cliente is null;
 
 /*FULL JOIN
 
@@ -312,14 +322,69 @@ full join
 /*FULL JOIN esclusiva*/
 
 /*26) visualizzare i dettagli di tutte le aziende che non hanno investimenti e tutti gli investimenti che non hanno aziende.*/
+select
+	fa.*,
+	fi.*
+from 
+	ft_azienda as fa 
+full join
+	ft_investimento as fi on
+		fa.id = fi.azienda 
+where 
+	fi.azienda is null or 
+	fa.id is null;
 
 /*27) visualizzare i dettagli di tutti gli investimenti che non hanno ROI e tutti i ROI che non hanno investimenti.*/
+select
+	fr.*,
+	fi.*
+from 
+	ft_investimento as fi 
+full join
+	ft_roi as fr on
+		fi.id = fr.investimento
+where 
+	fr.investimento is null or 
+	fi.id is null;
 
 /*28) visualizzare i dettagli di tuttie le aziende che non hanno prodotti e tutti i prodotti che non hanno aziende.*/
+select
+	fa.*,
+	fp.*
+from 
+	ft_azienda as fa 
+full join 
+	ft_prodotto as fp on
+		fa.id = fp.azienda 
+where 
+	fa.id is null or 
+	fp.azienda is null;
 
 /*29) visualizzare i dettagli di tutti i prodotti che non hanno transizioni e tutte le transazioni che non hanno prodotti.*/
+select
+	fp.*,
+	ft.*
+from 
+	ft_prodotto as fp
+full join
+	ft_transazione as ft on
+		fp.id = ft.prodotto 
+where 
+	fp.id is null or  
+	ft.prodotto is null;
 
 /*30) visualizzare i dettagli di tutti i clienti che non hanno recensioni e tutte le recensioni che non hanno clienti.*/
+select
+	fc.*,
+	fr.*
+from 
+	ft_cliente as fc 
+full join 
+	ft_recensione as fr on
+		fc.id = fr.cliente 
+where 
+	fc.id is null or 
+	fr.cliente is null;
 
 	
 	
@@ -327,7 +392,7 @@ full join
 	
 	
 	
---es extra	
+/*es extra*/	
 select 
 	fc.*,
 	fr.testo as recensione
