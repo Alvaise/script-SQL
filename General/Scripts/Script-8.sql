@@ -6,7 +6,7 @@ AS $$
  registrare eventualmente i risultati che emergono tramite delle variabili, 
  e creare un potenziale REPORT scrivendo su tabella  la situazione riscontrata.
  
- P.S. In questo esempio ho deciso di scrivere il report direttamente nella tabella dei LOG ma avrei potuto
+ P.S. In questo esempio ho deciso di scrivere il reporto direttamente nella tabella dei LOG ma avrei potuto
  creare  una tabella dedicata a questo tipo di record dove ad esempio i valori dei:
 	 -record_mancanti
 	 -record totali
